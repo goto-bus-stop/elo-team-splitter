@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify -t [ bubleify --jsx h ] -t sheetify/transform src/app.js -o bundle.js",
-    "watch": "watchify -t [ bubleify --jsx h ] -t sheetify/transform src/app.js -o bundle.js"
+    "build": "node build > bundle.js",
+    "watch": "watchify -t [ bubleify --jsx h --objectAssign Object.assign ] -t sheetify/transform src/app.js -o bundle.js"
   },
   "keywords": [],
   "author": "",
