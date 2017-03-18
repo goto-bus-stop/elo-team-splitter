@@ -1,7 +1,8 @@
 {
+  "private": true,
   "name": "aohd-team-splitter",
   "version": "0.0.0",
-  "description": "",
+  "description": "Elo-based team splitter for use for AoE community games.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +10,7 @@
     "watch": "watchify -t [ bubleify --jsx h --objectAssign Object.assign ] -t sheetify/transform src/app.js -o bundle.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Renée Kooi <renee@kooi.me>",
   "license": "ISC",
   "dependencies": {
     "copy-to-clipboard": "^3.0.5",
