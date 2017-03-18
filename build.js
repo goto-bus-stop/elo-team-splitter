@@ -1,5 +1,7 @@
 const fs = require('fs')
 const browserify = require('browserify')
+const uglifyify = require('uglifyify')
+const exorcist = require('exorcist')
 const replace = require('replacestream')
 const concat = require('concat-stream')
 const purify = require('purifycss')
@@ -12,14 +14,18 @@ const ready = new Promise((resolve) => {
   onComplete = after(2, resolve)
 })
 
-browserify({ entries: 'src/app.js' })
+browserify({ entries: 'src/app.js', debug: true })
   .transform('bubleify', {
     jsx: 'h',
     objectAssign: 'Object.assign'
   })
   .transform('sheetify/transform')
+  .transform('uglifyify', { global: true })
   .plugin('css-extract', { out: createCssStream })
+  .plugin('bundle-collapser/plugin')
   .bundle()
+  .pipe(uglify())
+  .pipe(exorcist('build/bundle.js.map'))
   .pipe(fs.createWriteStream('build/bundle.js'))
   .on('close', onComplete)
 
@@ -27,6 +33,10 @@ fs.createReadStream('index.html')
   .pipe(replace('</head>', '<link rel="stylesheet" href="bundle.css"></head>'))
   .pipe(fs.createWriteStream('build/index.html'))
   .on('close', onComplete)
+
+function uglify (opts) {
+  return uglifyify('build/bundle.js', opts)
+}
 
 function createCssStream () {
   return concat((css) => {

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node build > bundle.js",
+    "build": "node build",
     "watch": "watchify -t [ bubleify --jsx h --objectAssign Object.assign ] -t sheetify/transform src/app.js -o bundle.js"
   },
   "keywords": [],
@@ -20,11 +20,14 @@
     "after": "^0.8.2",
     "browserify": "^14.1.0",
     "bubleify": "^0.7.0",
+    "bundle-collapser": "^1.2.1",
     "concat-stream": "^1.6.0",
     "css-extract": "^1.2.0",
     "cssnano": "^3.10.0",
+    "exorcist": "^0.4.0",
     "purifycss": "^1.1.9",
     "replacestream": "^4.0.2",
+    "uglifyify": "^3.0.4",
     "watchify": "^3.9.0"
   }
 }
