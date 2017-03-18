@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify -t [ bubleify --jsx h ] src/app.js -o bundle.js",
-    "watch": "watchify -t [ bubleify --jsx h ] src/app.js -o bundle.js"
+    "build": "browserify -t [ bubleify --jsx h ] -t sheetify/transform src/app.js -o bundle.js",
+    "watch": "watchify -t [ bubleify --jsx h ] -t sheetify/transform src/app.js -o bundle.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "hyperapp": "^0.7.1"
+    "hyperapp": "^0.7.1",
+    "sheetify": "^6.0.1",
+    "tachyons": "^4.6.2"
   },
   "devDependencies": {
     "browserify": "^14.1.0",

@@ -1,4 +1,7 @@
 const { h, app } = require('hyperapp')
+const css = require('sheetify')
+
+css('tachyons')
 
 app({
   model: {},
