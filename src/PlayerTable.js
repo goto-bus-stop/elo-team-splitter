@@ -27,6 +27,7 @@ function AddPlayerRow ({ addingPlayer, onAdd, onNameInput, onEloInput }) {
       <td>
         <input
           type="text"
+          autofocus
           value={addingPlayer.name || ''}
           oninput={(e) => onNameInput(e.target.value)}
           onkeydown={onKeyDown}
