@@ -1,7 +1,9 @@
-exports.add = (model) => ({
-  players: model.players.concat([ model.newPlayer ]),
-  newPlayer: {}
-})
+exports.add = (model) => (
+  model.newPlayer.name && model.newPlayer.elo ? ({
+    players: model.players.concat([ model.newPlayer ]),
+    newPlayer: {}
+  }) : {}
+)
 
 exports.setAddingName = (model, name) => ({
   newPlayer: {

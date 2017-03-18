@@ -2,12 +2,16 @@ const { h } = require('hyperapp')
 
 module.exports = PlayerTable
 
+function teamColor (team) {
+  return [, 'red', 'blue'][team] || 'white'
+}
+
 function PlayerRow ({ name, elo, team = '-' }) {
   return (
-    <tr class="table-stripe">
-      <td>{name}</td>
-      <td>{elo}</td>
-      <td>{team}</td>
+    <tr class="stripe-dark">
+      <td class="pa2">{name}</td>
+      <td class="pa2">{elo}</td>
+      <td class={`pa2 tc b ${teamColor(team)}`}>{team}</td>
     </tr>
   )
 }
@@ -24,8 +28,9 @@ function AddPlayerRow ({ addingPlayer, onAdd, onNameInput, onEloInput }) {
 
   return (
     <tr>
-      <td>
+      <td class="pa1">
         <input
+          class="ba br2 b--light-red pa2"
           type="text"
           autofocus
           placeholder="Name"
@@ -34,8 +39,9 @@ function AddPlayerRow ({ addingPlayer, onAdd, onNameInput, onEloInput }) {
           onkeydown={onKeyDown}
         />
       </td>
-      <td>
+      <td class="pa1">
         <input
+          class="ba br2 b--light-red pa2"
           type="number"
           placeholder="Elo Rating"
           value={addingPlayer.elo || ''}
@@ -43,8 +49,13 @@ function AddPlayerRow ({ addingPlayer, onAdd, onNameInput, onEloInput }) {
           onkeydown={onKeyDown}
         />
       </td>
-      <td>
-        <button onClick={onAdd}>+</button>
+      <td class="pa1 tc">
+        <button
+          class="ba br2 b--light-red pa2 pointer w-100"
+          onClick={onAdd}
+        >
+          Add
+        </button>
       </td>
     </tr>
   )
@@ -55,9 +66,9 @@ function PlayerTable ({ players, addingPlayer, onAdd, onNameInput, onEloInput })
     <table>
       <thead>
         <tr>
-          <th>Player</th>
-          <th>Elo Rating</th>
-          <th>Team</th>
+          <th class="tl pa2">Player</th>
+          <th class="tl pa2">Elo Rating</th>
+          <th class="tl pa2">Team</th>
         </tr>
       </thead>
       <tbody>
