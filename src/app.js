@@ -1,6 +1,7 @@
 const { h, app } = require('hyperapp')
 const css = require('sheetify')
 const PlayerTable = require('./PlayerTable')
+const TeamSplit = require('./TeamSplit')
 
 css('tachyons')
 
@@ -20,6 +21,7 @@ app({
         onEloInput={actions.setAddingElo}
         onAdd={both(actions.add, actions.compute)}
       />
+      <TeamSplit players={model.players} />
     </div>
   )
 })

@@ -17,7 +17,8 @@ const ready = new Promise((resolve) => {
 browserify({ entries: 'src/app.js', debug: true })
   .transform('bubleify', {
     jsx: 'h',
-    objectAssign: 'Object.assign'
+    objectAssign: 'Object.assign',
+    transforms: { templateString: false }
   })
   .transform('sheetify/transform')
   .transform('uglifyify', { global: true })

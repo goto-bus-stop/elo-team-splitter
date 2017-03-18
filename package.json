@@ -6,15 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node build",
-    "watch": "watchify -t [ bubleify --jsx h --objectAssign Object.assign ] -t sheetify/transform src/app.js -o bundle.js"
+    "watch": "watchify -t [ bubleify --jsx h --objectAssign Object.assign --no templateString ] -t sheetify/transform src/app.js -o bundle.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "copy-to-clipboard": "^3.0.5",
     "hyperapp": "^0.7.1",
+    "insert-css": "^2.0.0",
+    "select": "^1.1.2",
     "sheetify": "^6.0.1",
-    "tachyons": "^4.6.2"
+    "tachyons": "^4.6.2",
+    "tiny-toast": "^1.2.0"
   },
   "devDependencies": {
     "after": "^0.8.2",
