@@ -19,6 +19,8 @@
   "devDependencies": {
     "browserify": "^14.1.0",
     "bubleify": "^0.7.0",
+    "css-extract": "^1.2.0",
+    "replacestream": "^4.0.2",
     "watchify": "^3.9.0"
   }
 }
