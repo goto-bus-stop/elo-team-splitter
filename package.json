@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node build",
-    "watch": "watchify -t [ bubleify --jsx h --objectAssign Object.assign --no templateString ] -t sheetify/transform src/app.js -o bundle.js"
+    "watch": "watchify -t [ bubleify --jsx h --objectAssign Object.assign ] -t sheetify/transform src/app.js -o bundle.js"
   },
   "keywords": [],
   "author": "",

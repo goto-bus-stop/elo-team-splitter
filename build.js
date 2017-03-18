@@ -1,6 +1,8 @@
 const fs = require('fs')
+const PassThrough = require('stream').PassThrough
 const browserify = require('browserify')
 const uglifyify = require('uglifyify')
+const bubleify = require('bubleify')
 const exorcist = require('exorcist')
 const replace = require('replacestream')
 const concat = require('concat-stream')
@@ -17,9 +19,9 @@ const ready = new Promise((resolve) => {
 browserify({ entries: 'src/app.js', debug: true })
   .transform('bubleify', {
     jsx: 'h',
-    objectAssign: 'Object.assign',
-    transforms: { templateString: false }
+    objectAssign: 'Object.assign'
   })
+  .transform(bubleForDependencies, { global: true })
   .transform('sheetify/transform')
   .transform('uglifyify', { global: true })
   .plugin('css-extract', { out: createCssStream })
@@ -37,6 +39,13 @@ fs.createReadStream('index.html')
 
 function uglify (opts) {
   return uglifyify('build/bundle.js', opts)
+}
+
+function bubleForDependencies (file, opts) {
+  if (file.includes('node_modules/tiny-toast')) {
+    return bubleify(file, opts)
+  }
+  return PassThrough()
 }
 
 function createCssStream () {
