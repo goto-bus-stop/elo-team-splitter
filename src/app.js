@@ -18,8 +18,15 @@ app({
         addingPlayer={model.newPlayer}
         onNameInput={actions.setAddingName}
         onEloInput={actions.setAddingElo}
-        onAdd={actions.add}
+        onAdd={both(actions.add, actions.compute)}
       />
     </div>
   )
 })
+
+function both (action1, action2) {
+  return () => {
+    action1()
+    action2()
+  }
+}

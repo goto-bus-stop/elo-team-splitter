@@ -2,12 +2,12 @@ const { h } = require('hyperapp')
 
 module.exports = PlayerTable
 
-function PlayerRow ({ name, elo }) {
+function PlayerRow ({ name, elo, team = '-' }) {
   return (
     <tr class="table-stripe">
       <td>{name}</td>
       <td>{elo}</td>
-      <td>-</td>
+      <td>{team}</td>
     </tr>
   )
 }
@@ -28,6 +28,7 @@ function AddPlayerRow ({ addingPlayer, onAdd, onNameInput, onEloInput }) {
         <input
           type="text"
           autofocus
+          placeholder="Name"
           value={addingPlayer.name || ''}
           oninput={(e) => onNameInput(e.target.value)}
           onkeydown={onKeyDown}
@@ -36,6 +37,7 @@ function AddPlayerRow ({ addingPlayer, onAdd, onNameInput, onEloInput }) {
       <td>
         <input
           type="number"
+          placeholder="Elo Rating"
           value={addingPlayer.elo || ''}
           oninput={(e) => onEloInput(e.target.value)}
           onkeydown={onKeyDown}
@@ -54,7 +56,7 @@ function PlayerTable ({ players, addingPlayer, onAdd, onNameInput, onEloInput })
       <thead>
         <tr>
           <th>Player</th>
-          <th>ELO</th>
+          <th>Elo Rating</th>
           <th>Team</th>
         </tr>
       </thead>
